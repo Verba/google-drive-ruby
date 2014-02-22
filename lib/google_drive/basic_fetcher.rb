@@ -26,6 +26,7 @@ module GoogleDrive
           http = @proxy.new(uri.host, uri.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.read_timeout = 600
           http.start() do
             path = uri.path + (uri.query ? "?#{uri.query}" : "")
             header = auth_header(auth).merge(extra_header)
